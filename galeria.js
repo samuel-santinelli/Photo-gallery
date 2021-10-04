@@ -34,13 +34,13 @@ const createItem = (urlImagem) => {
 // `
 }
 
-const carregarGaleria = (imgs) => imgs.forEach(createItem);
+const loadingGaleria = (imgs) => imgs.forEach(createItem);
 
-const criarSlide = (urlImagem, indice, arr) => {
+const createSlide = (urlImagem, indice, arr) => {
     const container = document.querySelector(".slide-container")
-    const novaDiv = document.createElement("div")
-    novaDiv.classList.add("slide")
-    novaDiv.id = getId(urlImagem)
+    const newDiv = document.createElement("div")
+    newDiv.classList.add("slide")
+    newDiv.id = getId(urlImagem)
 
     const indiceBefore = indice <= 0 ? arr.length -1 : indice -1
     const idBefore = getId(arr[indiceBefore])
@@ -48,7 +48,7 @@ const criarSlide = (urlImagem, indice, arr) => {
     const indiceNext = indice >= arr.length -1 ? 0 : indice + 1
     const idNext = getId(arr[indiceNext])
 
-    novaDiv.innerHTML = `
+    newDiv.innerHTML = `
         <div class="imagem-container">
         <a href="#" class="close">&#10006;</a>
         <a href="#${idBefore}" class="navegacao anterior">&#171;</a>
@@ -56,11 +56,11 @@ const criarSlide = (urlImagem, indice, arr) => {
         <a href="#${idNext}" class="navegacao proximo">&#187;</a>
         </div>
     `
-        container.appendChild(novaDiv)
+        container.appendChild(newDiv)
 }
    
 
-const carregarSlide = (imgs) => imgs.forEach(criarSlide)
+const loadingSlide = (imgs) => imgs.forEach(createSlide)
 
-carregarGaleria(imagens)
-carregarSlide(imagens)
+loadingGaleria(imagens)
+loadingSlide(imagens)
