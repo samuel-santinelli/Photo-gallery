@@ -78,7 +78,6 @@ const createSlide = (urlImagem, indice, arr) => {
         container.appendChild(newDiv)
 }
    
-
 const loadingSlide = (imgs) => imgs.forEach(createSlide)
 
 document.querySelector('.search-container input').addEventListener('keypress', pesquisarImagens);
