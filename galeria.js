@@ -1,15 +1,34 @@
 "use scrict";
 
-const imagens = [
-    "./imagens/imagem1.jpg",
-    "./imagens/imagem2.jpg",
-    "./imagens/imagem3.jpg",
-    "./imagens/imagem4.jpg",
-    "./imagens/imagem5.jfif",
-    "./imagens/imagem6.jpg",
-    "./imagens/imagem7.jpg",
-    "./imagens/imagem8.jpg",
-]
+const limparElementos = (elemento) => {
+    while(elemento.firstChild){
+        elemento.removeChild(elemento.lastChild);
+    }
+};
+
+const pesquisarImagens = async (evento) => {
+    
+    if (evento.key === 'Enter'){
+        const raca = evento.target.value;
+        const url = `https://dog.ceo/api/breed/${raca}/images`; 
+        const imagensResponse = await fetch(url);
+        const imagens = await imagensResponse.json();
+        
+        limparElementos(document.querySelector('.galery-container'));
+        limparElementos(document.querySelector('.slide-container'));
+
+        loadingGaleria(imagens.message);
+        loadingGaleria(imagens.message);
+    }
+};
+
+// Jeito antigo 
+// const pesquisarImagens = () => {
+//     const imagensResponse = fetch('https://dog.ceo/api/breed/hound/images')
+//         .then((response) => response.json())
+//         .then((response) => console.log(imagemResponse.json());)
+//         response => response.json()    
+// };
 
 const getId = (url) => {
     const posBarra = url.lastIndexOf("/") + 1
@@ -62,5 +81,4 @@ const createSlide = (urlImagem, indice, arr) => {
 
 const loadingSlide = (imgs) => imgs.forEach(createSlide)
 
-loadingGaleria(imagens)
-loadingSlide(imagens)
+document.querySelector('.search-container input').addEventListener('keypress', pesquisarImagens);
