@@ -10,7 +10,8 @@ const pesquisarImagens = async (evento) => {
     
     if (evento.key === 'Enter'){
         const raca = evento.target.value;
-        const url = `https://dog.ceo/api/breed/${raca}/images`; 
+        const url = `https://dog.ceo/api/breed/${raca}/images`;
+        // const url = `https://coffee.alexflipnote.dev/hfdaQzAQqSQ_coffee.jpg`;  
         const imagensResponse = await fetch(url);
         const imagens = await imagensResponse.json();
         
